@@ -64,11 +64,11 @@ object Api {
     @Volatile var token: String? = null
 
     val service: ApiService by lazy {
-        val client = OkHttpClient.Builder().addInterceptor { chain ->
+        val client = OkHttpClient.Builder().connectTimeout(90, java.util.concurrent.TimeUnit.SECONDS).readTimeout(90, java.util.concurrent.TimeUnit.SECONDS).addInterceptor { chain ->
             val req = chain.request().newBuilder().apply { token?.let { header("Authorization", "Bearer $it") } }.build()
             chain.proceed(req)
         }.build()
-        Retrofit.Builder().baseUrl("http://10.0.2.2:5001/").client(client)
+        Retrofit.Builder().baseUrl("https://stocknest-wblw.onrender.com/").client(client)
             .addConverterFactory(GsonConverterFactory.create()).build().create(ApiService::class.java)
     }
 }
