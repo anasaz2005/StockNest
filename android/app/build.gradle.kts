@@ -13,7 +13,7 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-        buildConfigField("String", "BASE_URL", "\"http://10.0.2.2:5001/\"")
+        buildConfigField("String", "BASE_URL", "\"https://stocknest-wblw.onrender.com/\"")
     }
     buildTypes {
         release { isMinifyEnabled = false }
